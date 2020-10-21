@@ -1,0 +1,22 @@
+#!/bin/bash
+
+wrong_pass=0
+declare -i wrong_pass
+pass_attempts=0
+declare -i pass_attempts
+
+name_attempts=$(grep -F "Failed password for invalid user" /var/log/auth.log | wc -l)
+wrong_name=$(grep -F "Failed password for invalid user" /var/log/auth.log | awk ' {print $13}' | sort | uniq | wc -l)
+
+for i in $(awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow)
+do
+	wrong_pass+=$(grep -F "Failed password for $i" /var/log/auth.log | awk '{print $11}' | sort | uniq -u | wc -l)
+	pass_attempts+=$(grep -F "Failed password for $i" /var/log/auth.log |  wc -l)
+
+done
+
+
+echo -e "There were \e[31m$pass_attempts\e[0m failures from \e[31m$wrong_pass\e[0m unique addresses to log into one of your accounts"
+echo -e "There were \e[31m$name_attempts\e[0m failures from \e[31m$wrong_name\e[0m unique addresses to log in with an invalid account"
+
+

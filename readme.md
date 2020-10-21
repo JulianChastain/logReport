@@ -1,11 +1,11 @@
 # Log Report
 If you ever run a server, one thing you may notice is that opportunists will try to ssh into your machine **constantly**. In the first two days after I put up my [website](www.julianchastain.com), there were more than **7,000** attempts to try to log into it. This is a tool I put together to track that. Running `logreport` will inform you how many attempts there have been to log in with account names that are valid or invalid on your server and will tell you how many of those came from unique IP addresses.
 ## How to install
-Because I am obsessed with one line installation scripts, the shortest way to install this is with:
+Because I am obsessed with one line installation scripts, the shortest way to install this is with: 
 `sudo sh $(curl https://github.com/JulianChastain/logReport/blob/main/install.sh)` 
 If you want to install it without executing random curl results, use the following two liner:
-`sudo curl https://github.com/JulianChastain/logReport/blob/main/logreport /bin/logreport`
-`chmod +x /bin/logreport`
+`sudo curl https://github.com/JulianChastain/logReport/blob/main/logreport /bin/logreport` 
+`chmod +x /bin/logreport` 
 Please do not clone this repository, there are zero advantages to that.
 ## Usage
 Just run `logreport`
